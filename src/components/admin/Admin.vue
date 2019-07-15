@@ -1,7 +1,7 @@
 <template>
   <div class="admin">
-    <div class="page-wrapper default-theme sidebar-bg bg1 toggled">
-        <a id="show-sidebar" @click="closeMenu" class="btn btn-sm btn-dark" href="#">
+    <div class="page-wrapper default-theme sidebar-bg bg1" :class="isCloseMenu ? 'toggled' : 'closed'">
+        <a id="show-sidebar" @click.prevent="closeMenu" class="btn btn-sm btn-dark show-sidebar" href="#">
             <i class="fas fa-bars"></i>
         </a>
         <nav id="sidebar" class="sidebar-wrapper">
@@ -10,19 +10,19 @@
                 <div class="sidebar-item sidebar-brand">
                     <a href="#">Vue Shop</a>
                     <div id="close-sidebar" @click="closeMenu">
-                        <i class="fas fa-times"></i>
+                      <i class="fas fa-times"></i>
                     </div>
                 </div>
                 <!-- sidebar-header  -->
                 <div class="sidebar-item sidebar-header">
                     <div class="user-pic">
-                        <img class="img-responsive img-rounded" src="/img/user.png" alt="User picture">
+                        <img class="img-responsive img-rounded" src="../../assets/imgs/user.png" alt="User picture">
                     </div>
                     <div class="user-info">
                         <span class="user-name">
                           Boris.K
                         </span>
-                        <span class="user-role"> {{email}} </span>
+                        <span class="user-role"> {{ email }} </span>
                         <span class="user-status">
                             <i class="fa fa-circle"></i>
                             <span>Online</span>
@@ -102,7 +102,7 @@
     },
     data() {
       return {
-        closeMenu: false,
+        isCloseMenu: false,
         email: 'test@gmail.com'
       }
     },
@@ -110,11 +110,12 @@
 
     },
     methods: {
-
+      closeMenu() {
+        this.isCloseMenu = !this.isCloseMenu;
+      }
     }
   }
 </script>
 
 <style lang="sass">
-
 </style>

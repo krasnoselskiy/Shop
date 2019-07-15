@@ -39,3 +39,16 @@
     font-size: 22px;
   }
 }
+
+.conainer {
+  &.transformed {
+    margin-left: 280px;
+    width: calc(100% - 300px);
+  }
+}
+
+.md-theme-default {
+  a:not(.md-button) {
+    color: #ccc;
+  }
+}

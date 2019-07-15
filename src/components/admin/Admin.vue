@@ -1,93 +1,45 @@
 <template>
   <div class="admin">
-    <div class="page-wrapper default-theme sidebar-bg bg1" :class="isCloseMenu ? 'toggled' : 'closed'">
+    <div class="page-wrapper default-theme sidebar-bg bg1" :class="isOpenMenu ? 'toggled' : 'closed'">
         <a id="show-sidebar" @click.prevent="closeMenu" class="btn btn-sm btn-dark show-sidebar" href="#">
-            <i class="fas fa-bars"></i>
+          <i class="fas fa-bars"></i>
         </a>
-        <nav id="sidebar" class="sidebar-wrapper">
-            <div class="sidebar-content">
-                <!-- sidebar-brand  -->
-                <div class="sidebar-item sidebar-brand">
-                    <a href="#">Vue Shop</a>
-                    <div id="close-sidebar" @click="closeMenu">
-                      <i class="fas fa-times"></i>
-                    </div>
-                </div>
-                <!-- sidebar-header  -->
-                <div class="sidebar-item sidebar-header">
-                    <div class="user-pic">
-                        <img class="img-responsive img-rounded" src="../../assets/imgs/user.png" alt="User picture">
-                    </div>
-                    <div class="user-info">
-                        <span class="user-name">
-                          Boris.K
-                        </span>
-                        <span class="user-role"> {{ email }} </span>
-                        <span class="user-status">
-                            <i class="fa fa-circle"></i>
-                            <span>Online</span>
-                        </span>
-                    </div>
-                </div>
-                <!-- sidebar-search  -->
-                <div class="sidebar-item sidebar-search">
-                    <div>
-                        <div class="input-group">
-                            <input type="text" class="form-control search-menu" placeholder="Search...">
-                            <div class="input-group-append">
-                                <span class="input-group-text">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- sidebar-menu  -->
-                <div class=" sidebar-item sidebar-menu">
-                    <ul>
-                        <li class="header-menu">
-                            <span>Menu</span>
-                        </li>
 
-                        <li>
-                            <router-link to="/admin/overview">
-                                <i class="fa fa-chart-line"></i>
-                                <span>Overview</span>
-                            </router-link>
-                        </li>
-                        <li>
-                            <router-link to="/admin/products">
-                                <i class="fab fa-amazon"></i>
-                                <span>Products</span>
-                            </router-link>
-                        </li>
-                        <li>
-                            <router-link to="/admin/orders">
-                                <i class="fa fa-shopping-cart"></i>
-                                <span>Orders</span>
-                            </router-link>
-                        </li>
+        <sidebar />
 
-                        <li>
-                            <router-link to="/admin/profile">
-                                <i class="fa fa-user"></i>
-                                <span>Profile</span>
-                            </router-link>
-                        </li>
-                        <li>
-                            <a href="#" @click="logout()">
-                                <i class="fa fa-power-off"></i>
-                                <span>Logout</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- sidebar-menu  -->
-            </div>
-        </nav>
-        <!-- sidebar-content  -->
+        <md-dialog :md-active.sync="showDialog">
+          <md-dialog-title>Preferences</md-dialog-title>
+            <md-tabs md-dynamic-height>
+              <md-tab md-label="General">
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut.</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut.</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut.</p>
+              </md-tab>
+
+              <md-tab md-label="Activity">
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut.</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut.</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut.</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut.</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut.</p>
+              </md-tab>
+
+              <md-tab md-label="Account">
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut.</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut.</p>
+              </md-tab>
+            </md-tabs>
+
+            <md-dialog-actions>
+              <md-button class="md-primary" @click="showDialog = false">Close</md-button>
+              <md-button class="md-primary" @click="showDialog = false">Save</md-button>
+            </md-dialog-actions>
+        </md-dialog>
+
+        <md-button class="md-primary md-raised" @click="showDialog = true">Show Dialog</md-button>
+
         <main class="page-content">
-            <router-view/>
+          <router-view/>
         </main>
         <!-- page-content" -->
     </div>
@@ -95,23 +47,32 @@
 </template>
 
 <script>
+  import Sidebar from './Sidebar.vue';
+
   export default {
     name: 'admin',
     components: {
-
+      sidebar: Sidebar
     },
-    data() {
-      return {
-        isCloseMenu: false,
-        email: 'test@gmail.com'
-      }
-    },
+    data: () => ({
+      active: false,
+      value: null,
+      isOpenMenu: true,
+      showDialog: false,
+      email: 'test@gmail.com'
+    }),
     computed: {
 
     },
     methods: {
       closeMenu() {
-        this.isCloseMenu = !this.isCloseMenu;
+        this.isOpenMenu = !this.isOpenMenu;
+      },
+      onConfirm () {
+        this.value = 'Agreed'
+      },
+      onCancel () {
+        this.value = 'Disagreed'
       }
     }
   }

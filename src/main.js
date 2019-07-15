@@ -1,14 +1,18 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import VueMaterial from 'vue-material'
 
 import { routes } from './routes';
 import store from './stores/store';
 import { firebaseListener } from './config/firebaseConfig';
+
+import 'vue-material/dist/vue-material.min.css'
 import './assets/styles/app.scss'
 
 import App from './App.vue';
 
 Vue.use(VueRouter);
+Vue.use(VueMaterial)
 
 
 firebaseListener(authStatusChange);

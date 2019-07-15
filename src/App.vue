@@ -7,12 +7,6 @@
           <div class="row">
             <div class="col-md-12">
               <router-view></router-view>
-              <div class="card panel-warning d-none d-sm-flex" id="reset-store-panel">
-                <div class="card-header">Admin Panel (Testing purpose)</div>
-                  <div class="card-body text-center">
-                    <button class="btn btn-warning">Reset Store</button>
-                  </div>
-              </div>
             </div>
           </div>
       </div>

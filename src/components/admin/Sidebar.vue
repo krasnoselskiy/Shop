@@ -3,7 +3,7 @@
     <div class="sidebar-content">
       <!-- sidebar-brand  -->
       <div class="sidebar-item sidebar-brand">
-          <router-link to="/">Vue Shop</router-link>
+          <router-link class="sidebar_logo" to="/">Vue Shop</router-link>
           <div id="close-sidebar" @click="closeMenu">
             <i class="fas fa-times"></i>
           </div>
@@ -126,5 +126,8 @@
   }
   #close-sidebar i {
     color: #ccc;
+  }
+  .sidebar_logo {
+    margin-right: 20px;
   }
 </style>

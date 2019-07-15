@@ -409,8 +409,8 @@ body {
   width: 37px;
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
-  -webkit-transition-delay: .3s;
-  transition-delay: .3s; }
+  cursor: pointer;
+}
 
 #show-sidebar:hover i {
   color: $primary;

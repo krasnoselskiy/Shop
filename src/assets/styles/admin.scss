@@ -405,12 +405,16 @@ body {
   position: fixed;
   left: 15px;
   top: 11px;
-  border-radius: 0 4px 4px 0px;
-  width: 35px;
-  -webkit-transition: left .3s ease;
-  transition: left .3s ease;
+  border-radius: 4px;
+  width: 37px;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
   -webkit-transition-delay: .3s;
   transition-delay: .3s; }
+
+#show-sidebar:hover i {
+  color: $primary;
+}
 
 .page-wrapper.toggled #show-sidebar {
   left: -40px; }

@@ -12,7 +12,7 @@ import './assets/styles/app.scss'
 import App from './App.vue';
 
 Vue.use(VueRouter);
-Vue.use(VueMaterial)
+Vue.use(VueMaterial);
 
 
 firebaseListener(authStatusChange);

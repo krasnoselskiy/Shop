@@ -1,9 +1,9 @@
 <template>
-  <nav id="sidebar" class="sidebar-wrapper">
+  <nav id="sidebar" class="sidebar-wrapper" :class="isOpenMenu ? 'toggled' : 'closed'" @button-clicked="showMenu">
     <div class="sidebar-content">
       <!-- sidebar-brand  -->
       <div class="sidebar-item sidebar-brand">
-          <a href="#">Vue Shop</a>
+          <router-link to="/">Vue Shop</router-link>
           <div id="close-sidebar" @click="closeMenu">
             <i class="fas fa-times"></i>
           </div>
@@ -90,12 +90,23 @@
 
     },
     data: () => ({
-
+      email: "user@gmail.com",
+      isOpenMenu: true,
     }),
     computed: {
 
     },
+    mounted() {
+      this.$root.$on('show', () => {
+        this.isOpenMenu = true;
+      })
+    },
     methods: {
+      showMenu() {
+        this.$root.$on('show', () => {
+          this.isOpenMenu = true;
+        })
+      },
       closeMenu() {
         this.isOpenMenu = !this.isOpenMenu;
       },
@@ -110,5 +121,10 @@
 </script>
 
 <style>
-
+  .sidebar-wrapper.toggled {
+    left: 0;
+  }
+  #close-sidebar i {
+    color: #ccc;
+  }
 </style>

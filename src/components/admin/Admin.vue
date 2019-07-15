@@ -1,7 +1,7 @@
 <template>
   <div class="admin">
-    <div class="page-wrapper default-theme sidebar-bg bg1" :class="isOpenMenu ? 'toggled' : 'closed'">
-        <a id="show-sidebar" @click.prevent="closeMenu" class="btn btn-sm btn-dark show-sidebar" href="#">
+    <div class="page-wrapper default-theme sidebar-bg bg1">
+        <a id="show-sidebar" @click="showMenu" class="btn btn-sm btn-dark show-sidebar">
           <i class="fas fa-bars"></i>
         </a>
 
@@ -65,8 +65,8 @@
 
     },
     methods: {
-      closeMenu() {
-        this.isOpenMenu = !this.isOpenMenu;
+      showMenu() {
+        this.$root.$emit('show');
       },
       onConfirm () {
         this.value = 'Agreed'

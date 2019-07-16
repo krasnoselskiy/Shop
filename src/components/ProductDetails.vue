@@ -22,8 +22,8 @@
         <span>{{ item.quantity }} left in stock</span>
         <p class="pull-right">
           <button @click="addItem" :disabled="item.quantity === 0" class="btn btn-success">
-                            Add to cart
-                        </button>
+              Add to cart
+          </button>
         </p>
         <div class="clearfix"></div>
       </div>

@@ -57,7 +57,7 @@
     data: () => ({
       active: false,
       value: null,
-      isOpenMenu: true,
+      isOpenMenu: false,
       showDialog: false,
       email: 'test@gmail.com'
     }),

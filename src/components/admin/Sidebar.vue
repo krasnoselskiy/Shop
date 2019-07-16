@@ -91,7 +91,7 @@
     },
     data: () => ({
       email: "user@gmail.com",
-      isOpenMenu: true,
+      isOpenMenu: false,
     }),
     computed: {
 

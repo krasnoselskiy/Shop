@@ -33,19 +33,19 @@ export function loginWithEmail (_, {email, password}) {
 }
 
 export function listenToProductList({commit}) {
-	return ref.child("products").on('value', (products) => {
-		commit('UPDATE_PRODUCT_LIST', products.val());
-	});
+	// return ref.child("products").on('value', (products) => {
+	// 	commit('UPDATE_PRODUCT_LIST', products.val());
+	// });
 }
 
 export function getShoppingCart({commit}, {uid, currentCart}) {
 	if (uid) {
-		return ref.child("cart/" + uid).once('value').then((cart) => {
-			// console.log(cart.val());
-			if (cart.val() && (!currentCart || currentCart.length == 0)) {
-				commit('SET_CART', cart.val());
-			}
-		});
+		// return ref.child("cart/" + uid).once('value').then((cart) => {
+		// 	// console.log(cart.val());
+		// 	if (cart.val() && (!currentCart || currentCart.length == 0)) {
+		// 		commit('SET_CART', cart.val());
+		// 	}
+		// });
 	} else {
 		// console.log("User has not logged in");
 	}
@@ -54,12 +54,12 @@ export function getShoppingCart({commit}, {uid, currentCart}) {
 export function saveShoppingCart(_, {uid, cartItemList}) {
 	// console.log("ACTIONS saveShoppingCart");
 	// console.log("CART DATA", cartItemList);
-	return ref.child("cart/" + uid).set(cartItemList);
+	// return ref.child("cart/" + uid).set(cartItemList);
 }
 
 export function saveToTransaction(_, {uid, cartItemList}) {
-	let newTransactionKey = ref.child("transactions").push().key;
+	// let newTransactionKey = ref.child("transactions").push().key;
 	var newTransaction = {}
 	newTransaction['/transactions/' + uid + '/' + newTransactionKey] = cartItemList;
-	return ref.update(newTransaction);
+	// return ref.update(newTransaction);
 }

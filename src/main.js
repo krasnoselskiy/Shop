@@ -4,6 +4,8 @@ import VueMaterial from 'vue-material'
 
 import { routes } from './routes';
 import store from './stores/store';
+
+import VueFirestore from 'vue-firestore'
 import { firebaseListener } from './config/firebaseConfig';
 
 import 'vue-material/dist/vue-material.min.css'
@@ -13,6 +15,7 @@ import App from './App.vue';
 
 Vue.use(VueRouter);
 Vue.use(VueMaterial);
+Vue.use(VueFirestore);
 
 
 firebaseListener(authStatusChange);
@@ -36,7 +39,7 @@ new Vue({
   el: '#app',
   router,
   store,
-  render: h => h(App)
+	render: h => h(App)
 })
 
 function authStatusChange(loggedIn, user) {
@@ -46,5 +49,4 @@ function authStatusChange(loggedIn, user) {
 			store.dispatch('getShoppingCart', {uid: user.uid, currentCart: store.getters.cartItemList});
 		}
 	}
-
 }

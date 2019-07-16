@@ -4,8 +4,9 @@ import ProductDetails from './components/ProductDetails.vue';
 import Admin from './components/admin/Admin.vue';
 import Login from './components/auth/Login.vue';
 import Register from './components/auth/Register.vue';
-import Profile from './components/profile/index';
-import Overview from './components/overview/index';
+import Profile from './components/admin/profile/index';
+import Products from './components/admin/add_product/index';
+import Overview from './components/admin/overview/index';
 
 export const routes = [
 	{path: '/', component: Store, name: 'mainpage'},
@@ -17,6 +18,10 @@ export const routes = [
 		{
 			path: 'profile',
 			component: Profile
+		},
+		{
+			path: 'products',
+			component: Products
 		},
 		{
 			path: 'overview',

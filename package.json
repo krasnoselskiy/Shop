@@ -10,10 +10,12 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "core-js": "^2.6.5",
-    "firebase": "^5.11.1",
+    "firebase": "^6.3.0",
+    "firebase-tools": "^7.1.0",
     "npm": "^6.10.1",
     "vue": "^2.6.10",
     "vue-event-hub": "^1.0.2",
+    "vue-firestore": "^0.3.22",
     "vue-material": "^1.0.0-beta-11",
     "vue-router": "^3.0.6",
     "vue-spinner": "^1.0.3",

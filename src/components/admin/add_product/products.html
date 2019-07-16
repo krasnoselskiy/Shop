@@ -3,14 +3,22 @@
     <form @submit.prevent="add_product" class="product_form">
       <div class="form-group">
         <label for="product_title">Product title</label>
-        <input type="text" class="form-control" v-model="product_name" id="product_title" placeholder="Enter your product title">
+        <input type="text" class="form-control" v-model="product_name" required id="product_title" placeholder="Enter your product title">
       </div>
       <div class="form-group">
         <label for="product_price">Product price</label>
-        <input type="text" class="form-control" v-model="product_price" id="product_price" placeholder="Enter your product price">
+        <input type="text" class="form-control" v-model="product_price" required id="product_price" placeholder="Enter your product price">
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>
+
+  <table>
+    <tr v-for="product in products">
+      <td>{{ product.name }}</td>
+      <td>$ {{ product.price }}</td>
+    </tr>
+  </table>
 </section>
+
 

@@ -6,6 +6,7 @@ export default {
   props: [],
   data () {
     return {
+      products: [],
       product_name: null,
       product_price: null,
     }
@@ -18,16 +19,22 @@ export default {
   },
   methods: {
     add_product () {
-      db.collection("products").doc(this.product_name).set({
+      this.$firestore.product.add({
         name: this.product_name,
-        price: this.product_price,
+        price: this.product_price
       })
-      .then(function() {
-        this.product_name = this.product_price = '';
-      })
-      .catch(function(error) {
-          // console.error("Error writing document: ", error);
-      });
+    },
+    firestore () {
+      return {
+        products: fb.collection('products'),
+      }
     }
+  },
+  created() {
+    db.collection("products").get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        this.products.push(doc.data());
+      });
+    });
   }
 }

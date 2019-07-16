@@ -38,33 +38,33 @@
           </div>
       </div>
       <!-- sidebar-menu  -->
-      <div class=" sidebar-item sidebar-menu">
-          <ul>
+      <div class=" sidebar-item sidebar-menu" >
+          <ul @click="closeMenu">
               <li class="header-menu">
                   <span>Menu</span>
               </li>
 
               <li>
-                  <router-link to="/admin/overview">
+                  <router-link to="/admin/overview" >
                       <i class="fa fa-chart-line"></i>
                       <span>Overview</span>
                   </router-link>
               </li>
               <li>
-                  <router-link to="/admin/products">
+                  <router-link to="/admin/products" >
                       <i class="fab fa-amazon"></i>
                       <span>Products</span>
                   </router-link>
               </li>
               <li>
-                  <router-link to="/admin/orders">
+                  <router-link to="/admin/orders" >
                       <i class="fa fa-shopping-cart"></i>
                       <span>Orders</span>
                   </router-link>
               </li>
 
               <li>
-                  <router-link to="/admin/profile">
+                  <router-link to="/admin/profile" >
                       <i class="fa fa-user"></i>
                       <span>Profile</span>
                   </router-link>
@@ -99,7 +99,11 @@
     mounted() {
       this.$root.$on('show', () => {
         this.isOpenMenu = true;
-      })
+      });
+
+      // EventBus.$on('ROUTER_CHANGED', () => {
+      //   console.log(`Oh, that's nice. It's gotten clicks! :)`)
+      // });
     },
     methods: {
       showMenu() {
@@ -108,7 +112,7 @@
         })
       },
       closeMenu() {
-        this.isOpenMenu = !this.isOpenMenu;
+        this.isOpenMenu = false;
       },
       onConfirm () {
         this.value = 'Agreed'

@@ -7,7 +7,7 @@
 
         <sidebar />
 
-        <md-dialog :md-active.sync="showDialog">
+        <!-- <md-dialog :md-active.sync="showDialog">
           <md-dialog-title>Preferences</md-dialog-title>
             <md-tabs md-dynamic-height>
               <md-tab md-label="General">
@@ -36,7 +36,7 @@
             </md-dialog-actions>
         </md-dialog>
 
-        <md-button class="md-primary md-raised" @click="showDialog = true">Show Dialog</md-button>
+        <md-button class="md-primary md-raised" @click="showDialog = true">Show Dialog</md-button> -->
 
         <main class="page-content">
           <router-view/>

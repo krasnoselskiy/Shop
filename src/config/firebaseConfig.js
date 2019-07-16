@@ -1,19 +1,16 @@
-import firebase from '@firebase/app'
-import 'firebase/firestore'
-import 'firebase/firebase-auth'
-import 'firebase/storage'
+import firebase from '@firebase/app';
+import 'firebase/firestore';
+import 'firebase/firebase-auth';
+import 'firebase/storage';
+require ("firebase/firestore");
 
-const config = {
-  apiKey: "AIzaSyBG7ctYxoF_6LDlqNRo-FzV9j_-YEkkzyw",
-  authDomain: "simple-shop-b5fc8.firebaseapp.com",
-  databaseURL: "https://simple-shop-b5fc8.firebaseio.com",
-  projectId: "simple-shop-b5fc8",
-  storageBucket: "simple-shop-b5fc8.appspot.com",
-  messagingSenderId: "857285455698",
-  appId: "1:857285455698:web:62f77016760a992a"
-};
+firebase.initializeApp({
+  apiKey: 'AIzaSyBG7ctYxoF_6LDlqNRo-FzV9j_-YEkkzyw',
+  authDomain: 'simple-shop-b5fc8.firebaseapp.com',
+  projectId: 'simple-shop-b5fc8'
+});
 
-export const fb = firebase.initializeApp(config);
+// export const fb = firebase.initializeApp(config);
 
 export function firebaseListener(func) {
   firebase.auth().onAuthStateChanged(function(user) {
@@ -25,7 +22,7 @@ export function firebaseListener(func) {
       func(false)
     }
   }, function(error) {
-    console.log(error)
+    alert(error);
   });
 }
 

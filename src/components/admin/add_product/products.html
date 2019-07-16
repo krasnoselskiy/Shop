@@ -3,22 +3,33 @@
     <form @submit.prevent="add_product" class="product_form">
       <div class="form-group">
         <label for="product_title">Product title</label>
-        <input type="text" class="form-control" v-model="product_name" required id="product_title" placeholder="Enter your product title">
+        <input type="text" class="form-control" v-model="product.name" required id="product_title" placeholder="Enter your product title">
       </div>
       <div class="form-group">
         <label for="product_price">Product price</label>
-        <input type="text" class="form-control" v-model="product_price" required id="product_price" placeholder="Enter your product price">
+        <input type="text" class="form-control" v-model="product.price" required id="product_price" placeholder="Enter your product price">
+      </div>
+      <div class="form-group">
+        <label for="product_image">Product image</label>
+        <input type="file" class="form-control-file" id="product_image">
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>
 
-  <table>
-    <tr v-for="product in products">
-      <td>{{ product.name }}</td>
-      <td>$ {{ product.price }}</td>
-    </tr>
-  </table>
+  <div class="table-responsive">
+    <table class="table product_table">
+      <tr v-for="product in products">
+        <td>{{ product.data().name }}</td>
+        <td>$ {{ product.data().price }}</td>
+        <td>
+          <button @click="deleteProduct(product.id)" class="btn btn-warning">Delete</button>
+          <button @click="editProduct(product.id)" class="btn btn-info">Edit</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+
 </section>
 
 

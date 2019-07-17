@@ -27,6 +27,14 @@ export default {
 
   },
   methods: {
+    watcher() {
+      db.collection("products").onSnapshot((querySnapshot) => {
+        this.products = [];
+        querySnapshot.forEach((doc) => {
+          this.products.push(doc);
+        });
+      });
+    },
     readData() {
       db.collection("products").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -67,8 +75,7 @@ export default {
     updateProduct() {
       db.collection("products").doc(this.editedProductId).update(this.product)
       .then(() => {
-        console.log("Document successfully updated!");
-        this.readData();
+        this.watcher();
         this.clearForm();
       })
       .catch((error) => {

@@ -3,11 +3,11 @@
     <form @submit.prevent="add_product" class="product_form clearfix">
       <div class="form-group">
         <label for="product_title">Product title</label>
-        <input type="text" class="form-control" v-model="product.name" required id="product_title" placeholder="Enter your product title">
+        <input type="text" class="form-control" v-model="product.name" autocomplete="false" required id="product_title" placeholder="Enter your product title">
       </div>
       <div class="form-group">
         <label for="product_price">Product price</label>
-        <input type="text" class="form-control" v-model="product.price" required id="product_price" placeholder="Enter your product price">
+        <input type="text" class="form-control" v-model="product.price" autocomplete="false" required id="product_price" placeholder="Enter your product price">
       </div>
       <div class="form-group">
         <label for="product_image">Product image</label>
@@ -20,10 +20,10 @@
   <div class="table-responsive">
     <table class="table product_table">
       <tr v-for="product in products">
-        <td>{{ product.data().name }}</td>
-        <td>$ {{ product.data().price }}</td>
+        <td>{{ product.name }}</td>
+        <td>$ {{ product.price }}</td>
         <td>
-          <button @click="deleteProduct(product.id)" class="btn btn-warning md-raised">Delete</button>
+          <button @click="deleteProduct(product)" class="btn btn-warning md-raised">Delete</button>
           <button @click="editProduct(product)" class="btn btn-info md-raised">Edit</button>
         </td>
       </tr>

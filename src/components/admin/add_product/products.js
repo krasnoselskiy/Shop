@@ -1,4 +1,4 @@
-import {db} from '../../../config/firebaseConfig';
+import { db, fb} from '../../../config/firebaseConfig';
 
 export default {
   name: 'products',
@@ -26,6 +26,11 @@ export default {
   mounted () {
 
   },
+  firestore () {
+    return {
+      products: db.collection('products'),
+    }
+  },
   methods: {
     watcher() {
       db.collection("products").onSnapshot((querySnapshot) => {
@@ -43,52 +48,47 @@ export default {
       });
     },
     add_product () {
-      db.collection("products").add(this.product)
-        .then((docref) => {
-          this.readData();
-          this.clearForm();
-        }).catch((err) => {
-          console.log(err);
-        });
-      // this.$firestore.product.add({
-      //   name: this.product_name,
-      //   price: this.product_price,
-      //   image: this.product_image,
-      // })
+      this.$firestore.products.add(this.product);
     },
     clearForm() {
       Object.assign(this.$data, this.$options.data.apply(this))
     },
-    deleteProduct(id) {
-      db.collection("products").doc(id).delete().then(() =>  {
-        this.products = [];
-        this.readData();
-      }).catch(function(error) {
-        console.error("Error removing document: ", error);
-      });
+    deleteProduct(doc) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.value) {
+          this.$firestore.products.doc(doc['id']).delete()
+
+          Toast.fire({
+            type: 'warning',
+            title: 'Your file has been deleted.'
+          });
+        }
+      })
     },
     editProduct(product) {
       this.isShowEditDialog = true;
-      this.editedProductId = product.id;
-      this.product = product.data();
+      this.editedProductId = product['id'];
+      this.product = product;
     },
     updateProduct() {
-      db.collection("products").doc(this.editedProductId).update(this.product)
-      .then(() => {
-        this.watcher();
-        this.clearForm();
-      })
-      .catch((error) => {
-          console.error("Error updating document: ", error);
+      this.$firestore.products.doc(this.editedProductId).update(this.product);
+
+      Toast.fire({
+        type: 'success',
+        title: 'Your product has been updated!'
       });
+
+      this.isShowEditDialog = false;
     }
-    // firestore () {
-    //   return {
-    //     products: fb.collection('products'),
-    //   }
-    // }
   },
   created() {
-    this.readData();
   }
 }

@@ -53,7 +53,7 @@
               <li>
                   <router-link to="/admin/products" >
                       <i class="fab fa-amazon"></i>
-                      <span>Products</span>
+                      <span>Add product</span>
                   </router-link>
               </li>
               <li>

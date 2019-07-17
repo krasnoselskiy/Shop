@@ -2,13 +2,14 @@ import firebase from '@firebase/app';
 import 'firebase/firestore';
 import 'firebase/firebase-auth';
 import 'firebase/storage';
-require ("firebase/firestore");
 
-firebase.initializeApp({
+require('firebase/firestore');
+
+const config = {
   apiKey: 'AIzaSyBG7ctYxoF_6LDlqNRo-FzV9j_-YEkkzyw',
   authDomain: 'simple-shop-b5fc8.firebaseapp.com',
   projectId: 'simple-shop-b5fc8'
-});
+};
 
 // export const fb = firebase.initializeApp(config);
 
@@ -27,5 +28,6 @@ export function firebaseListener(func) {
 }
 
 // export const ref = firebase.database().ref();
+export const fb = firebase.initializeApp(config);
 export const db = firebase.firestore();
 export const firebaseAuth = firebase.auth;

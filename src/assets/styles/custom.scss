@@ -9,9 +9,10 @@
   }
 }
 
-.btn-success {
+.md-button, .btn-success {
   background-color: $primary;
   border-color: $primary;
+  color: #fff;
 }
 
 .remain {
@@ -59,4 +60,12 @@ a:hover {
 
 .btn {
   font-size: 16px;
+}
+
+.md-dialog {
+  width: 352px;
+}
+
+.md-dialog-container {
+  background: #fff;
 }

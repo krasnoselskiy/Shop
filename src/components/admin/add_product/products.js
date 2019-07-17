@@ -11,7 +11,10 @@ export default {
         name: null,
         price: null,
         image: null
-      }
+      },
+      productImages: null,
+      isShowEditDialog: false,
+      editedProductId: null,
       // product_name: null,
       // product_price: null,
       // product_image: null,
@@ -49,24 +52,34 @@ export default {
       Object.assign(this.$data, this.$options.data.apply(this))
     },
     deleteProduct(id) {
-      if(confirm('Are you sure?')) {
-        db.collection("products").doc(id).delete().then(function() {
-          console.log("Document successfully deleted!");
-        }).catch(function(error) {
-            console.error("Error removing document: ", error);
-        });
-      } else {
-
-      }
+      db.collection("products").doc(id).delete().then(() =>  {
+        this.products = [];
+        this.readData();
+      }).catch(function(error) {
+        console.error("Error removing document: ", error);
+      });
     },
-    editProduct(id) {
-      alert(id);
+    editProduct(product) {
+      this.isShowEditDialog = true;
+      this.editedProductId = product.id;
+      this.product = product.data();
     },
-    firestore () {
-      return {
-        products: fb.collection('products'),
-      }
+    updateProduct() {
+      db.collection("products").doc(this.editedProductId).update(this.product)
+      .then(() => {
+        console.log("Document successfully updated!");
+        this.readData();
+        this.clearForm();
+      })
+      .catch((error) => {
+          console.error("Error updating document: ", error);
+      });
     }
+    // firestore () {
+    //   return {
+    //     products: fb.collection('products'),
+    //   }
+    // }
   },
   created() {
     this.readData();

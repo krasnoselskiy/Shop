@@ -1,5 +1,6 @@
 .products {
   .product_form {
+    margin-bottom: 30px;
     .btn {
       float: right;
     }
@@ -8,5 +9,11 @@
     .btn {
       margin-right: 10px;
     }
+  }
+}
+
+.md-dialog {
+  .product_form {
+    padding: 20px;
   }
 }

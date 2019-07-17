@@ -6,8 +6,14 @@
     }
   }
   .product_table {
-    .btn {
+    .btn:not(:last-of-type) {
       margin-right: 10px;
+    }
+    td:last-of-type {
+      width: 161px;
+    }
+    .product_image {
+      max-width: 120px;
     }
   }
 }

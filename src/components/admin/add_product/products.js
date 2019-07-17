@@ -12,12 +12,9 @@ export default {
         price: null,
         image: null
       },
-      productImages: null,
+      productImage: null,
       isShowEditDialog: false,
       editedProductId: null,
-      // product_name: null,
-      // product_price: null,
-      // product_image: null,
     }
   },
   computed: {
@@ -33,26 +30,22 @@ export default {
   },
   methods: {
     watcher() {
-      db.collection("products").onSnapshot((querySnapshot) => {
-        this.products = [];
-        querySnapshot.forEach((doc) => {
-          this.products.push(doc);
-        });
-      });
+
     },
+
     readData() {
-      db.collection("products").get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          this.products.push(doc);
-        });
-      });
+
     },
-    add_product () {
+
+    add_product() {
       this.$firestore.products.add(this.product);
-    },
+      // this.addImage();
+    },  
+
     clearForm() {
       Object.assign(this.$data, this.$options.data.apply(this))
     },
+
     deleteProduct(doc) {
       Swal.fire({
         title: 'Are you sure?',
@@ -73,11 +66,37 @@ export default {
         }
       })
     },
+
+    addImage() {
+      let product_image = this.productImage.target.files[0];
+      let storageRef = fb.storage().ref('products/' + product_image.name);
+
+      var uploadTask = storageRef.put(product_image);
+
+      uploadTask.on('state_changed', (snapshot) => {
+      }, function(error) {
+        console.log(error);
+      }, () => {
+        uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+          this.product.image = downloadURL;
+          console.log('File available at', downloadURL);
+        });
+      });
+
+      storageRef.put(product_image).then((snapshot) => {
+        Toast.fire({
+          type: 'success',
+          title: 'Files has been uploaded!'
+        });
+      });
+    },
+
     editProduct(product) {
       this.isShowEditDialog = true;
       this.editedProductId = product['id'];
       this.product = product;
     },
+
     updateProduct() {
       this.$firestore.products.doc(this.editedProductId).update(this.product);
 
@@ -87,8 +106,10 @@ export default {
       });
 
       this.isShowEditDialog = false;
+      this.product = {};
     }
   },
+
   created() {
   }
 }

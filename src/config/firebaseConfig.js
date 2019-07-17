@@ -6,9 +6,13 @@ import 'firebase/storage';
 require('firebase/firestore');
 
 const config = {
-  apiKey: 'AIzaSyBG7ctYxoF_6LDlqNRo-FzV9j_-YEkkzyw',
-  authDomain: 'simple-shop-b5fc8.firebaseapp.com',
-  projectId: 'simple-shop-b5fc8'
+  apiKey: "AIzaSyBG7ctYxoF_6LDlqNRo-FzV9j_-YEkkzyw",
+  authDomain: "simple-shop-b5fc8.firebaseapp.com",
+  databaseURL: "https://simple-shop-b5fc8.firebaseio.com",
+  projectId: "simple-shop-b5fc8",
+  storageBucket: "simple-shop-b5fc8.appspot.com",
+  messagingSenderId: "857285455698",
+  appId: "1:857285455698:web:62f77016760a992a"
 };
 
 // export const fb = firebase.initializeApp(config);

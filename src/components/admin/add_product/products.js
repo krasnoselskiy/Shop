@@ -29,18 +29,11 @@ export default {
     }
   },
   methods: {
-    watcher() {
-
-    },
-
-    readData() {
-
-    },
-
     add_product() {
       this.$firestore.products.add(this.product);
-      // this.addImage();
-    },  
+      this.product = {};
+      this.productImage = null;
+    },
 
     clearForm() {
       Object.assign(this.$data, this.$options.data.apply(this))
@@ -79,7 +72,6 @@ export default {
       }, () => {
         uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
           this.product.image = downloadURL;
-          console.log('File available at', downloadURL);
         });
       });
 
@@ -95,6 +87,10 @@ export default {
       this.isShowEditDialog = true;
       this.editedProductId = product['id'];
       this.product = product;
+    },
+
+    editProductImage() {
+      this.addImage();
     },
 
     updateProduct() {
